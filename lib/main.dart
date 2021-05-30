@@ -11,17 +11,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int number = 0;
-  void press() {
-    setState(() {
-      number = number + 1;
-    });
-  }
-
-  void refreshcount() {
-    setState(() {
-      number = 0;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +20,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("Counter App"),
           actions: [
-            IconButton(icon: Icon(Icons.refresh), onPressed: refreshcount)
+            IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  setState(() {
+                    number = 0;
+                  });
+                })
           ],
         ),
         body: Center(
@@ -49,17 +44,22 @@ class _MyAppState extends State<MyApp> {
                 width: 200,
                 height: 40,
                 child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    color: Colors.blue[400],
-                    child: Text(
-                      "COUNT",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  color: Colors.blue[400],
+                  child: Text(
+                    "COUNT",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onPressed: press),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      number = number + 1;
+                    });
+                  },
+                ),
               ),
             ],
           ),
